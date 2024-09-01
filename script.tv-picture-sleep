@@ -1,0 +1,41 @@
+alias: Изключване на картината на ТВ
+sequence:
+  - data:
+      command: input keyevent 189
+    target:
+      device_id:
+        - 2dc96eb0f3a8df3c4cc906b7285f3a60
+    action: androidtv.adb_command
+  - repeat:
+      count: 3
+      sequence:
+        - data:
+            command: input keyevent 61 61 61 61 61 61 61 61 61 61
+          target:
+            device_id:
+              - 2dc96eb0f3a8df3c4cc906b7285f3a60
+          action: androidtv.adb_command
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - data:
+      command: input keyevent 21 21 21 21 21
+    target:
+      device_id:
+        - 2dc96eb0f3a8df3c4cc906b7285f3a60
+    action: androidtv.adb_command
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - data:
+      command: input keyevent 66
+    target:
+      device_id:
+        - 2dc96eb0f3a8df3c4cc906b7285f3a60
+    action: androidtv.adb_command
+mode: single
+icon: mdi:surround-sound

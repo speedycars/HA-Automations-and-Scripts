@@ -1,0 +1,220 @@
+alias: Бял шум 2
+sequence:
+  - data:
+      command: WAKEUP
+    target:
+      device_id:
+        - 2dc96eb0f3a8df3c4cc906b7285f3a60
+    action: androidtv.adb_command
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - data:
+      command: HOME
+    target:
+      device_id:
+        - 2dc96eb0f3a8df3c4cc906b7285f3a60
+    action: androidtv.adb_command
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - data:
+      volume_level: 0.01
+    target:
+      device_id:
+        - aac1e92b5fc5ed173eba86f89fef3966
+        - ad2cb3c19de08a7c84e71e64d12ea72c
+        - 2dc96eb0f3a8df3c4cc906b7285f3a60
+    action: media_player.volume_set
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - repeat:
+      sequence:
+        - if:
+            - condition: not
+              conditions:
+                - condition: device
+                  device_id: ad2cb3c19de08a7c84e71e64d12ea72c
+                  domain: media_player
+                  entity_id: 5fe34f1e72d2ab1f0f08ba7001955ca4
+                  type: is_playing
+          then:
+            - data:
+                media_content_type: VIDEO
+                media_content_id: https://www.youtube.com/tv?v=dTBqPeASNW8
+              enabled: true
+              target:
+                device_id: aac1e92b5fc5ed173eba86f89fef3966
+              action: media_extractor.play_media
+            - delay:
+                hours: 0
+                minutes: 0
+                seconds: 5
+                milliseconds: 0
+            - target:
+                device_id:
+                  - 2dc96eb0f3a8df3c4cc906b7285f3a60
+              data: {}
+              action: media_player.media_play
+            - delay:
+                hours: 0
+                minutes: 0
+                seconds: 5
+                milliseconds: 0
+      count: 12
+  - if:
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: media_player.bedroom_tv
+            state: playing
+    then:
+      - metadata: {}
+        data:
+          message: Бял шум не успя да се пусне по DLNA. Пробваме с Google Cast.
+        action: notify.mobile_app_sm_g985f
+      - if:
+          - condition: not
+            conditions:
+              - condition: state
+                entity_id: media_player.bedroom_tv
+                state: playing
+        then:
+          - repeat:
+              sequence:
+                - data:
+                    media_content_type: VIDEO
+                    media_content_id: https://www.youtube.com/tv?v=dTBqPeASNW8
+                  enabled: true
+                  target:
+                    device_id:
+                      - ad2cb3c19de08a7c84e71e64d12ea72c
+                  action: media_extractor.play_media
+                - delay:
+                    hours: 0
+                    minutes: 0
+                    seconds: 10
+                    milliseconds: 0
+              count: 12
+  - if:
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: media_player.bedroom_tv
+            state: playing
+    then:
+      - metadata: {}
+        data:
+          message: >-
+            Бял шум не успя да се пусне по DLNA и Google Cast. Рестарт на ТВ и
+            скрипта
+        action: notify.mobile_app_sm_g985f
+      - target:
+          device_id: 2dc96eb0f3a8df3c4cc906b7285f3a60
+        data:
+          command: reboot
+        action: androidtv.adb_command
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 5
+          milliseconds: 0
+      - wait_for_trigger:
+          - platform: state
+            entity_id:
+              - remote.bedroom_tv
+            to: "on"
+            for:
+              hours: 0
+              minutes: 0
+              seconds: 5
+        continue_on_timeout: false
+        timeout:
+          hours: 0
+          minutes: 10
+          seconds: 0
+          milliseconds: 0
+      - metadata: {}
+        data: {}
+        action: script.unknown_8
+      - stop: Бял шум не тръгна дори след рестарт на ТВ и скрипт.
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+    enabled: true
+  - data:
+      command: input keyevent 126
+    target:
+      device_id:
+        - 2dc96eb0f3a8df3c4cc906b7285f3a60
+    action: androidtv.adb_command
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 500
+  - data: {}
+    action: script.tv-picture-sleep
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 50
+      milliseconds: 0
+  - data:
+      volume_level: 0.02
+    target:
+      device_id:
+        - aac1e92b5fc5ed173eba86f89fef3966
+        - ad2cb3c19de08a7c84e71e64d12ea72c
+        - 2dc96eb0f3a8df3c4cc906b7285f3a60
+    action: media_player.volume_set
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - data:
+      volume_level: 0.03
+    target:
+      device_id:
+        - aac1e92b5fc5ed173eba86f89fef3966
+        - ad2cb3c19de08a7c84e71e64d12ea72c
+        - 2dc96eb0f3a8df3c4cc906b7285f3a60
+    action: media_player.volume_set
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - data:
+      volume_level: 0.04
+    target:
+      device_id:
+        - aac1e92b5fc5ed173eba86f89fef3966
+        - ad2cb3c19de08a7c84e71e64d12ea72c
+        - 2dc96eb0f3a8df3c4cc906b7285f3a60
+    action: media_player.volume_set
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - data:
+      volume_level: 0.05
+    target:
+      device_id:
+        - aac1e92b5fc5ed173eba86f89fef3966
+        - ad2cb3c19de08a7c84e71e64d12ea72c
+        - 2dc96eb0f3a8df3c4cc906b7285f3a60
+    action: media_player.volume_set
+icon: mdi:speaker-wireless
+mode: single

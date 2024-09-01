@@ -1,0 +1,273 @@
+alias: Парно и топла вода - пусната
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_1
+    from: Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_2
+    from: Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_3
+    from: Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_4
+    from: Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_5
+    from: Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_6
+    from: Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_7
+    from: Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_8
+    from: Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_9
+    from: Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_10
+    from: Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_1
+    from: Част от Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_2
+    from: Част от Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_3
+    from: Част от Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_4
+    from: Част от Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_5
+    from: Част от Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_6
+    from: Част от Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_7
+    from: Част от Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_8
+    from: Част от Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_9
+    from: Част от Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_10
+    from: Част от Младост 3
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+condition:
+  - condition: and
+    conditions:
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_1
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_1
+            state: Част от Младост 3
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_2
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_2
+            state: Част от Младост 3
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_3
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_3
+            state: Част от Младост 3
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_4
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_4
+            state: Част от Младост 3
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_5
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_5
+            state: Част от Младост 3
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_6
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_6
+            state: Част от Младост 3
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_7
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_7
+            state: Част от Младост 3
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_8
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_8
+            state: Част от Младост 3
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_9
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_9
+            state: Част от Младост 3
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_10
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_10
+            state: Част от Младост 3
+action:
+  - metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.toplofikatsiia_avariia
+    action: input_boolean.turn_off
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 1
+      milliseconds: 0
+  - if:
+      - condition: state
+        entity_id: input_boolean.toplofikatsiia_avariia
+        state: "off"
+        for:
+          hours: 0
+          minutes: 2
+          seconds: 0
+    then:
+      - data:
+          message: 💦♨️ Вече има парно и топла вода в Младост 3!
+          data:
+            ttl: 0
+            priority: high
+        action: notify.mobile_app_sm_g985f
+mode: single

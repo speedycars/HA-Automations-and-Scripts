@@ -1,0 +1,49 @@
+alias: Домофон-Отваряне
+sequence:
+  - parallel:
+      - type: turn_off
+        device_id: ede76563987026e6df4331ae4490eb90
+        entity_id: 901811dc0895680f1661d5be79779993
+        domain: switch
+      - type: turn_off
+        device_id: ede76563987026e6df4331ae4490eb90
+        entity_id: 225114e28da011dc100b37ab64e1037f
+        domain: switch
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 500
+  - type: turn_on
+    device_id: ede76563987026e6df4331ae4490eb90
+    entity_id: 225114e28da011dc100b37ab64e1037f
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 500
+  - type: turn_on
+    device_id: ede76563987026e6df4331ae4490eb90
+    entity_id: 901811dc0895680f1661d5be79779993
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 500
+  - type: turn_off
+    device_id: ede76563987026e6df4331ae4490eb90
+    entity_id: 901811dc0895680f1661d5be79779993
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 500
+  - type: turn_off
+    device_id: ede76563987026e6df4331ae4490eb90
+    entity_id: 225114e28da011dc100b37ab64e1037f
+    domain: switch
+mode: single
+icon: mdi:shield-lock-open-outline

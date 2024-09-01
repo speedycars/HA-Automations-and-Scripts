@@ -1,0 +1,126 @@
+alias: BACKUP
+description: ""
+trigger:
+  - platform: time
+    at: "07:00:00"
+condition: []
+action:
+  - metadata: {}
+    data:
+      message: Стартира back up
+    action: telegram_bot.send_message
+  - if:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.svetoslav_pc_cpuload
+            for:
+              hours: 0
+              minutes: 0
+              seconds: 3
+            state: unavailable
+          - condition: state
+            entity_id: sensor.svetoslav_pc_cpuload
+            for:
+              hours: 0
+              minutes: 0
+              seconds: 3
+            state: unknown
+    then:
+      - data:
+          broadcast_port: 9
+          mac: MAC
+          broadcast_address: IP
+        action: wake_on_lan.send_magic_packet
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 5
+          milliseconds: 0
+  - wait_for_trigger:
+      - platform: state
+        entity_id:
+          - sensor.svetoslav_pc_svetoslav_pc_processactive_syncbackpro
+        to: "0"
+    timeout:
+      hours: 0
+      minutes: 8
+      seconds: 0
+      milliseconds: 0
+    continue_on_timeout: false
+  - metadata: {}
+    data: {}
+    target:
+      entity_id: switch.usb_switch_3
+    action: switch.turn_on
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - device_id: b118c5c8ed2fd87adefde3756ad277a1
+    domain: button
+    entity_id: 3cb133a6c00b5a2b5d5f8d1e6a73d768
+    type: press
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - device_id: b118c5c8ed2fd87adefde3756ad277a1
+    domain: button
+    entity_id: 26af5a1e9920e33e5cd0ff5adedbe0db
+    type: press
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - wait_for_trigger:
+      - platform: state
+        entity_id:
+          - sensor.svetoslav_pc_svetoslav_pc_processactive_syncbackpro
+        from: "1"
+        to: "0"
+        for:
+          hours: 0
+          minutes: 0
+          seconds: 21
+    timeout:
+      hours: 2
+      minutes: 0
+      seconds: 0
+      milliseconds: 0
+    continue_on_timeout: false
+  - device_id: b118c5c8ed2fd87adefde3756ad277a1
+    domain: button
+    entity_id: 9b472f26eaafd1125495bc864d352f89
+    type: press
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - target:
+      entity_id:
+        - switch.usb_switch_3
+    data: {}
+    action: switch.turn_off
+  - device_id: b118c5c8ed2fd87adefde3756ad277a1
+    domain: button
+    entity_id: ff22cbe77e18dbc4d23fd28918849e85
+    type: press
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 20
+      milliseconds: 0
+  - device_id: b118c5c8ed2fd87adefde3756ad277a1
+    domain: button
+    entity_id: 73a60683122ae5ea2870d873babb7c22
+    type: press
+  - metadata: {}
+    data:
+      message: Завърши back up.
+    action: telegram_bot.send_message
+mode: single

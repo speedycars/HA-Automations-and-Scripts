@@ -1,0 +1,448 @@
+alias: Парно и топла вода - спряна
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_1
+    to: Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_2
+    to: Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_3
+    to: Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_4
+    to: Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_5
+    to: Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_6
+    to: Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_7
+    to: Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_8
+    to: Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_9
+    to: Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_10
+    to: Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_1
+    to: Част от Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_2
+    to: Част от Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_3
+    to: Част от Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_4
+    to: Част от Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_5
+    to: Част от Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_6
+    to: Част от Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_7
+    to: Част от Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_8
+    to: Част от Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_9
+    to: Част от Младост 3
+  - platform: state
+    entity_id:
+      - sensor.toplofikatsiia_10
+    to: Част от Младост 3
+condition:
+  - condition: state
+    entity_id: input_boolean.toplofikatsiia_avariia
+    state: "off"
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+action:
+  - device_id: ae1458b2f70a89a392cdf7d372361c0d
+    domain: mobile_app
+    type: notify
+    message: 💧♨️ Няма парно и топла вода в Младост 3!
+    enabled: false
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - if:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_1
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_1
+            state: Част от Младост 3
+    then:
+      - if:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_uchastk_1
+            state: unknown
+        then:
+          - wait_for_trigger:
+              - platform: state
+                entity_id:
+                  - sensor.toplofikatsiia_uchastk_1
+                from: unknown
+            timeout:
+              hours: 0
+              minutes: 10
+              seconds: 0
+              milliseconds: 0
+      - device_id: ae1458b2f70a89a392cdf7d372361c0d
+        domain: mobile_app
+        type: notify
+        title: >-
+          💦♨️ Няма парно и топла вода в {{ states('sensor.toplofikatsiia_1')
+          }}!
+        message: >-
+          Район: {{ states('sensor.toplofikatsiia_uchastk_1') }}\n{{
+          states('sensor.toplofikatsiia_informatsiia_1') }}
+  - if:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_2
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_2
+            state: Част от Младост 3
+    then:
+      - if:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_uchastk_2
+            state: unknown
+        then:
+          - wait_for_trigger:
+              - platform: state
+                entity_id:
+                  - sensor.toplofikatsiia_uchastk_2
+                from: unknown
+            timeout:
+              hours: 0
+              minutes: 10
+              seconds: 0
+              milliseconds: 0
+      - device_id: ae1458b2f70a89a392cdf7d372361c0d
+        domain: mobile_app
+        type: notify
+        title: >-
+          💦♨️ Няма парно и топла вода в {{ states('sensor.toplofikatsiia_2')
+          }}!
+        message: >-
+          Район: {{ states('sensor.toplofikatsiia_uchastk_2') }}\n{{
+          states('sensor.toplofikatsiia_informatsiia_2') }}
+  - if:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_3
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_3
+            state: Част от Младост 3
+    then:
+      - if:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_uchastk_3
+            state: unknown
+        then:
+          - wait_for_trigger:
+              - platform: state
+                entity_id:
+                  - sensor.toplofikatsiia_uchastk_3
+                from: unknown
+            timeout:
+              hours: 0
+              minutes: 10
+              seconds: 0
+              milliseconds: 0
+      - device_id: ae1458b2f70a89a392cdf7d372361c0d
+        domain: mobile_app
+        type: notify
+        title: >-
+          💦♨️ Няма парно и топла вода в {{ states('sensor.toplofikatsiia_3')
+          }}!
+        message: >-
+          Район: {{ states('sensor.toplofikatsiia_uchastk_3') }}\n{{
+          states('sensor.toplofikatsiia_informatsiia_3') }}
+  - if:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_4
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_4
+            state: Част от Младост 3
+    then:
+      - if:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_uchastk_4
+            state: unknown
+        then:
+          - wait_for_trigger:
+              - platform: state
+                entity_id:
+                  - sensor.toplofikatsiia_uchastk_4
+                from: unknown
+            timeout:
+              hours: 0
+              minutes: 10
+              seconds: 0
+              milliseconds: 0
+      - device_id: ae1458b2f70a89a392cdf7d372361c0d
+        domain: mobile_app
+        type: notify
+        title: >-
+          💦♨️ Няма парно и топла вода в {{ states('sensor.toplofikatsiia_4')
+          }}!
+        message: >-
+          Район: {{ states('sensor.toplofikatsiia_uchastk_4') }}\n{{
+          states('sensor.toplofikatsiia_informatsiia_4') }}
+  - if:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_5
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_5
+            state: Част от Младост 3
+    then:
+      - if:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_uchastk_5
+            state: unknown
+        then:
+          - wait_for_trigger:
+              - platform: state
+                entity_id:
+                  - sensor.toplofikatsiia_uchastk_5
+                from: unknown
+            timeout:
+              hours: 0
+              minutes: 10
+              seconds: 0
+              milliseconds: 0
+      - device_id: ae1458b2f70a89a392cdf7d372361c0d
+        domain: mobile_app
+        type: notify
+        title: >-
+          💦♨️ Няма парно и топла вода в {{ states('sensor.toplofikatsiia_5')
+          }}!
+        message: >-
+          Район: {{ states('sensor.toplofikatsiia_uchastk_5') }}\n{{
+          states('sensor.toplofikatsiia_informatsiia_5') }}
+  - if:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_6
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_6
+            state: Част от Младост 3
+    then:
+      - if:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_uchastk_6
+            state: unknown
+        then:
+          - wait_for_trigger:
+              - platform: state
+                entity_id:
+                  - sensor.toplofikatsiia_uchastk_6
+                from: unknown
+            timeout:
+              hours: 0
+              minutes: 10
+              seconds: 0
+              milliseconds: 0
+      - device_id: ae1458b2f70a89a392cdf7d372361c0d
+        domain: mobile_app
+        type: notify
+        title: >-
+          💦♨️ Няма парно и топла вода в {{ states('sensor.toplofikatsiia_6')
+          }}!
+        message: >-
+          Район: {{ states('sensor.toplofikatsiia_uchastk_6') }}\n{{
+          states('sensor.toplofikatsiia_informatsiia_6') }}
+  - if:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_7
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_7
+            state: Част от Младост 3
+    then:
+      - if:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_uchastk_7
+            state: unknown
+        then:
+          - wait_for_trigger:
+              - platform: state
+                entity_id:
+                  - sensor.toplofikatsiia_uchastk_7
+                from: unknown
+            timeout:
+              hours: 0
+              minutes: 10
+              seconds: 0
+              milliseconds: 0
+      - device_id: ae1458b2f70a89a392cdf7d372361c0d
+        domain: mobile_app
+        type: notify
+        title: >-
+          💦♨️ Няма парно и топла вода в {{ states('sensor.toplofikatsiia_7')
+          }}!
+        message: >-
+          Район: {{ states('sensor.toplofikatsiia_uchastk_7') }}\n{{
+          states('sensor.toplofikatsiia_informatsiia_7') }}
+  - if:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_8
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_8
+            state: Част от Младост 3
+    then:
+      - if:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_uchastk_8
+            state: unknown
+        then:
+          - wait_for_trigger:
+              - platform: state
+                entity_id:
+                  - sensor.toplofikatsiia_uchastk_8
+                from: unknown
+            timeout:
+              hours: 0
+              minutes: 10
+              seconds: 0
+              milliseconds: 0
+      - device_id: ae1458b2f70a89a392cdf7d372361c0d
+        domain: mobile_app
+        type: notify
+        title: >-
+          💦♨️ Няма парно и топла вода в {{ states('sensor.toplofikatsiia_8')
+          }}!
+        message: >-
+          Район: {{ states('sensor.toplofikatsiia_uchastk_8') }}\n{{
+          states('sensor.toplofikatsiia_informatsiia_8') }}
+  - if:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_9
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_9
+            state: Част от Младост 3
+    then:
+      - if:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_uchastk_9
+            state: unknown
+        then:
+          - wait_for_trigger:
+              - platform: state
+                entity_id:
+                  - sensor.toplofikatsiia_uchastk_9
+                from: unknown
+            timeout:
+              hours: 0
+              minutes: 10
+              seconds: 0
+              milliseconds: 0
+      - device_id: ae1458b2f70a89a392cdf7d372361c0d
+        domain: mobile_app
+        type: notify
+        title: >-
+          💦♨️ Няма парно и топла вода в {{ states('sensor.toplofikatsiia_9')
+          }}!
+        message: >-
+          Район: {{ states('sensor.toplofikatsiia_uchastk_9') }}\n{{
+          states('sensor.toplofikatsiia_informatsiia_9') }}
+  - if:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_10
+            state: Младост 3
+          - condition: state
+            entity_id: sensor.toplofikatsiia_10
+            state: Част от Младост 3
+    then:
+      - if:
+          - condition: state
+            entity_id: sensor.toplofikatsiia_uchastk_10
+            state: unknown
+        then:
+          - wait_for_trigger:
+              - platform: state
+                entity_id:
+                  - sensor.toplofikatsiia_uchastk_10
+                from: unknown
+            timeout:
+              hours: 0
+              minutes: 10
+              seconds: 0
+              milliseconds: 0
+      - device_id: ae1458b2f70a89a392cdf7d372361c0d
+        domain: mobile_app
+        type: notify
+        title: >-
+          💦♨️ Няма парно и топла вода в {{ states('sensor.toplofikatsiia_10')
+          }}!
+        message: >-
+          Район: {{ states('sensor.toplofikatsiia_uchastk_10') }}\n{{
+          states('sensor.toplofikatsiia_informatsiia_10') }}
+  - metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.toplofikatsiia_avariia
+    action: input_boolean.turn_on
+mode: single

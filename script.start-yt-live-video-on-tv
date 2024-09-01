@@ -1,0 +1,88 @@
+alias: Пускане на музика от YT
+sequence:
+  - data:
+      command: WAKEUP
+    target:
+      device_id:
+        - 2dc96eb0f3a8df3c4cc906b7285f3a60
+    action: androidtv.adb_command
+  - target:
+      device_id:
+        - 2dc96eb0f3a8df3c4cc906b7285f3a60
+    data:
+      command: am force-stop com.teamsmart.videomanager.tv
+    action: androidtv.adb_command
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - data:
+      command: HOME
+    target:
+      device_id:
+        - 2dc96eb0f3a8df3c4cc906b7285f3a60
+    action: androidtv.adb_command
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - data:
+      volume_level: 0.08
+    target:
+      device_id:
+        - aac1e92b5fc5ed173eba86f89fef3966
+    action: media_player.volume_set
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - data:
+      activity: vnd.youtube.launch://www.youtube.com/tv?v=jfKfPfyJRdk
+    target:
+      entity_id:
+        - remote.bedroom_tv
+    action: remote.turn_on
+  - repeat:
+      sequence:
+        - data:
+            media_content_type: VIDEO
+            media_content_id: https://www.youtube.com/tv?v=jfKfPfyJRdk
+          enabled: true
+          target:
+            device_id:
+              - aac1e92b5fc5ed173eba86f89fef3966
+          action: media_extractor.play_media
+        - delay:
+            hours: 0
+            minutes: 0
+            seconds: 5
+            milliseconds: 0
+      until:
+        - condition: state
+          entity_id: media_player.bedroom_tv_2
+          state: playing
+    enabled: false
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+    enabled: true
+  - data:
+      command: input keyevent 126
+    target:
+      device_id:
+        - 2dc96eb0f3a8df3c4cc906b7285f3a60
+    action: androidtv.adb_command
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 500
+  - data: {}
+    action: script.tv-picture-sleep
+icon: mdi:image-filter-center-focus-strong
+mode: single

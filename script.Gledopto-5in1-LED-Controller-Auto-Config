@@ -1,0 +1,69 @@
+alias: Gledopto - Autoconfig
+sequence:
+  - data:
+      qos: 0
+      retain: false
+      payload: "true"
+      topic: zigbee2mqtt/bridge/config/permit_join
+    action: mqtt.publish
+  - data: {}
+    action: script.gledopto_reset_long_press
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 7
+      milliseconds: 0
+  - metadata: {}
+    data: {}
+    action: script.gledopto_opt_switch_to_correct_led_mode
+  - data: {}
+    action: script.gledopto_opt_long_press
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - repeat:
+      count: 3
+      sequence:
+        - data: {}
+          action: script.gledopto_reset_short_press
+  - metadata: {}
+    data:
+      addon: 45df7312_zigbee2mqtt
+    enabled: true
+    action: hassio.addon_restart
+  - wait_for_trigger:
+      - platform: state
+        entity_id:
+          - sensor.zigbee2mqtt_bridge_version
+        from: unavailable
+    timeout:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - target:
+      device_id: 4a0e3699c8e0f94a805d3f740196dea4
+    data:
+      kelvin: 2000
+      brightness_pct: 15
+    action: light.turn_on
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - target:
+      device_id:
+        - 4a0e3699c8e0f94a805d3f740196dea4
+    data: {}
+    action: light.turn_off
+  - data:
+      qos: 0
+      retain: false
+      payload: "false"
+      topic: zigbee2mqtt/bridge/config/permit_join
+    action: mqtt.publish
+mode: single
+icon: mdi:refresh-auto
